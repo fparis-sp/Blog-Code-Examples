@@ -1,0 +1,19 @@
+# OpenAI API Client
+openai>=1.0.0
+
+# HTTP Requests (para PokeAPI)
+requests>=2.31.0
+
+# Environment Variables
+python-dotenv>=1.0.0
+
+# LangChain + LangGraph (para 03_langgraph_agent.py)
+langchain>=0.1.0
+langgraph>=0.0.20
+langchain-openai>=0.0.5
+langchain-core>=0.1.0
+
+# Notas:
+# - Python 3.10 o superior requerido
+# - Instalar con: pip install -r requirements.txt
+# - Configurar .env con OPENAI_API_KEY antes de ejecutar
