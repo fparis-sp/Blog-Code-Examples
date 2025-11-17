@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from app.config import config
 
 
@@ -24,5 +24,14 @@ def create_app(test_config=None):
     # Register blueprints
     from app.routes import main
     app.register_blueprint(main.bp)
+
+    # Register error handlers
+    @app.errorhandler(404)
+    def not_found_error(error):
+        return render_template('errors/404.html'), 404
+
+    @app.errorhandler(500)
+    def internal_error(error):
+        return render_template('errors/500.html'), 500
 
     return app
