@@ -1,0 +1,13 @@
+{% macro render_stat(name, value, max_value=255) %}
+<div class="mb-3">
+    <div class="flex justify-between mb-1">
+        <span class="text-sm font-medium text-gray-700 capitalize">{{ name }}</span>
+        <span class="text-sm font-bold text-gray-900">{{ value }}</span>
+    </div>
+    <div class="w-full bg-gray-200 rounded-full h-2.5">
+        <div class="stat-bar bg-blue-600 h-2.5 rounded-full"
+             style="width: {{ (value / max_value * 100)|round|int }}%">
+        </div>
+    </div>
+</div>
+{% endmacro %}

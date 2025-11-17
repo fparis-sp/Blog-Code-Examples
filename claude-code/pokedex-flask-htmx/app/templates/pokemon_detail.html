@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% from "components/stat_bar.html" import render_stat %}
+
+{% block title %}{{ pokemon.display_name }} - Pokédex{% endblock %}
+
+{% block content %}
+<!-- Back button -->
+<div class="mb-6">
+    <a href="{{ url_for('main.pokemon_list') }}"
+       class="inline-flex items-center text-blue-600 hover:text-blue-800">
+        ← Back to List
+    </a>
+</div>
+
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div class="md:flex">
+        <!-- Left side - Image -->
+        <div class="md:w-1/2 bg-gradient-to-br from-gray-100 to-gray-200 p-8">
+            <div class="text-center">
+                <p class="text-gray-500 text-xl font-mono mb-2">
+                    #{{ '%03d'|format(pokemon.id) }}
+                </p>
+                <h1 class="text-4xl font-bold text-gray-800 mb-8 capitalize">
+                    {{ pokemon.display_name }}
+                </h1>
+
+                <!-- Official Artwork -->
+                {% if pokemon.artwork_url %}
+                <img src="{{ pokemon.artwork_url }}"
+                     alt="{{ pokemon.display_name }}"
+                     class="mx-auto w-64 h-64 object-contain drop-shadow-2xl">
+                {% elif pokemon.sprite_url %}
+                <img src="{{ pokemon.sprite_url }}"
+                     alt="{{ pokemon.display_name }}"
+                     class="mx-auto w-48 h-48 object-contain">
+                {% endif %}
+
+                <!-- Types -->
+                <div class="flex justify-center gap-2 mt-6">
+                    {% for type in pokemon.types %}
+                    <span class="{{ pokemon.get_type_color(type) }} text-white px-4 py-2 rounded-full font-semibold type-badge">
+                        {{ type }}
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Right side - Details -->
+        <div class="md:w-1/2 p-8">
+            <!-- Physical Info -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Physical Info</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-gray-600 text-sm">Height</p>
+                        <p class="text-2xl font-bold text-gray-800">{{ "%.1f"|format(pokemon.height_m) }} m</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-gray-600 text-sm">Weight</p>
+                        <p class="text-2xl font-bold text-gray-800">{{ "%.1f"|format(pokemon.weight_kg) }} kg</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Abilities -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Abilities</h2>
+                <div class="flex flex-wrap gap-2">
+                    {% for ability in pokemon.abilities %}
+                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+                        {{ ability }}
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Base Stats -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Base Stats</h2>
+                {{ render_stat('HP', pokemon.stats.hp) }}
+                {{ render_stat('Attack', pokemon.stats.attack) }}
+                {{ render_stat('Defense', pokemon.stats.defense) }}
+                {{ render_stat('Sp. Attack', pokemon.stats['special-attack']) }}
+                {{ render_stat('Sp. Defense', pokemon.stats['special-defense']) }}
+                {{ render_stat('Speed', pokemon.stats.speed) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navigation to previous/next pokemon -->
+<div class="mt-8 flex justify-between">
+    {% if pokemon.id > 1 %}
+    <a href="{{ url_for('main.pokemon_detail', name=pokemon.id - 1) }}"
+       class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+        ← Previous
+    </a>
+    {% else %}
+    <div></div>
+    {% endif %}
+
+    {% if pokemon.id < 151 %}
+    <a href="{{ url_for('main.pokemon_detail', name=pokemon.id + 1) }}"
+       class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+        Next →
+    </a>
+    {% endif %}
+</div>
+{% endblock %}

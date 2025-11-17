@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, current_app
+from flask import Blueprint, render_template, current_app, abort
 from app.services.pokeapi import PokeAPIService
-from app.models.pokemon import PokemonListItem
+from app.models.pokemon import PokemonListItem, Pokemon
 
 bp = Blueprint('main', __name__)
 
@@ -38,3 +38,19 @@ def pokemon_list():
         pokemon_list = [PokemonListItem.from_api(p) for p in response['results']]
 
     return render_template('pokemon_list.html', pokemon_list=pokemon_list)
+
+
+@bp.route('/pokemon/<string:name>')
+def pokemon_detail(name):
+    """Pokemon detail page."""
+    service = get_pokeapi_service()
+
+    # Fetch pokemon details
+    response = service.get_pokemon_detail(name)
+
+    if not response:
+        abort(404)
+
+    pokemon = Pokemon.from_api(response)
+
+    return render_template('pokemon_detail.html', pokemon=pokemon)
