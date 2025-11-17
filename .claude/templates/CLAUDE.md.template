@@ -1,0 +1,156 @@
+# Project: [Nombre del Proyecto]
+
+> **Descripción breve:** Qué hace este proyecto en una línea
+
+## Tech Stack
+
+- **Language:** Python 3.12
+- **Framework:** [FastAPI / Django / Flask / etc]
+- **Database:** [PostgreSQL / MySQL / MongoDB / SQLite]
+- **Testing:** [pytest / unittest]
+- **Linting:** [ruff / black / flake8 + mypy]
+- **Other:** [Redis / Celery / etc]
+
+## Project Structure
+
+```
+src/
+├── api/          # [Descripción: routes, endpoints, etc]
+├── services/     # [Descripción: business logic]
+├── models/       # [Descripción: database models]
+├── utils/        # [Descripción: helper functions]
+└── config/       # [Descripción: configuration]
+
+tests/
+├── unit/         # Unit tests
+├── integration/  # Integration tests
+└── conftest.py   # Pytest fixtures
+```
+
+## Development Commands
+
+```bash
+# Setup
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+# Run application
+[comando para correr app: uvicorn, python manage.py runserver, etc]
+
+# Run tests
+pytest tests/ -v
+
+# Run linting
+[comando de linting: ruff check ., black --check ., etc]
+
+# Database migrations (si aplica)
+[comandos de migración: alembic upgrade head, python manage.py migrate, etc]
+```
+
+## Code Conventions
+
+- **Imports:** [Absolute / Relative] imports from `src/`
+- **Type hints:** [Required / Recommended / Optional] for all functions
+- **Docstrings:** [Google / NumPy / Sphinx] style
+- **Line length:** [88 / 100 / 120] chars
+- **String quotes:** [Single / Double] quotes
+- **Async:** Use async/await for [DB / I/O / API] operations
+
+## Testing Strategy
+
+- Unit tests for [business logic / services / utils]
+- Integration tests for [API endpoints / DB operations]
+- Mocks for [external APIs / third-party services]
+- Fixtures in `tests/conftest.py`
+- Target coverage: >[80 / 90]%
+- [Test database strategy: in-memory SQLite / Docker PostgreSQL / etc]
+
+## Database
+
+- **ORM:** [SQLAlchemy / Django ORM / etc]
+- **Migrations:** [Alembic / Django migrations / etc]
+- **Connection:** [Connection pooling strategy]
+- **Seeding:** [Command to seed test data if applicable]
+
+## API (si aplica)
+
+- **Style:** [REST / GraphQL]
+- **Authentication:** [JWT / OAuth / API Key]
+- **Documentation:** [OpenAPI/Swagger / etc]
+- **Rate limiting:** [Strategy if applicable]
+
+## Environment Variables
+
+Required `.env` file (use `.env.example` as template):
+
+```bash
+# Database
+DATABASE_URL=postgresql://user:pass@localhost:5432/dbname
+
+# API Keys (never commit!)
+[API_KEY_NAME]=your-key-here
+
+# App Config
+DEBUG=[True / False]
+SECRET_KEY=your-secret-key
+```
+
+## Custom Skills Available
+
+You have access to these project skills:
+- `code-reviewer` - Pre-commit code review
+- `test-writer` - Generate [pytest / unittest] tests
+- `doc-generator` - Auto-document with [Google / NumPy] style
+
+Use them with the Task tool.
+
+## Important Notes
+
+- [Convención importante #1: ej. "Todos los precios en centavos (int)"]
+- [Convención importante #2: ej. "Siempre usar async/await para DB"]
+- [Convención importante #3: ej. "API keys en .env, nunca hardcoded"]
+- [Cualquier otra regla importante del proyecto]
+
+## Common Tasks
+
+### Adding a new feature
+```bash
+# 1. Create feature branch
+git checkout -b feature/nombre
+
+# 2. Write code + tests
+[tu workflow habitual]
+
+# 3. Run tests
+pytest tests/
+
+# 4. Pre-commit check
+/review  # Quick check
+# or
+code-reviewer skill  # Deep analysis
+```
+
+### Debugging
+- [Herramientas de debugging: pdb / debugger / logs]
+- [Donde ver logs: terminal / archivo / etc]
+
+## Resources
+
+- **Documentation:** [Link a docs del proyecto]
+- **API Reference:** [Link a API docs si aplica]
+- **Design Docs:** [Link a diseños / arquitectura]
+
+---
+
+**INSTRUCCIONES DE USO DE ESTE TEMPLATE:**
+
+1. Copia este archivo a la raíz de tu proyecto como `CLAUDE.md`
+2. Reemplaza todos los `[corchetes]` con información específica de tu proyecto
+3. Elimina secciones que no apliquen (ej. "API" si no tienes API)
+4. Agrega secciones específicas que necesites
+5. Mantén actualizado cuando cambies estructura o convenciones
+
+Claude Code leerá este archivo automáticamente y usará la información
+para entender tu proyecto sin necesidad de que repitas las mismas
+instrucciones en cada conversación.
