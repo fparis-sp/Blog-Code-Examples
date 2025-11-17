@@ -1,5 +1,5 @@
 import requests
-from typing import Optional, Dict, List
+from typing import Optional, Dict
 
 
 class PokeAPIService:
@@ -7,7 +7,7 @@ class PokeAPIService:
 
     def __init__(self, base_url: str):
         """Initialize the service with base URL."""
-        self.base_url = base_url.rstrip('/')
+        self.base_url = base_url.rstrip("/")
         self.session = requests.Session()
 
     def get_pokemon_list(self, limit: int = 151, offset: int = 0) -> Optional[Dict]:
@@ -23,7 +23,7 @@ class PokeAPIService:
         """
         try:
             url = f"{self.base_url}/pokemon"
-            params = {'limit': limit, 'offset': offset}
+            params = {"limit": limit, "offset": offset}
             response = self.session.get(url, params=params, timeout=10)
 
             if response.status_code == 200:
