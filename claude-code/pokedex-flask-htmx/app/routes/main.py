@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app, abort
+from flask import Blueprint, render_template, current_app, abort, request
 from app.services.pokeapi import PokeAPIService
 from app.models.pokemon import PokemonListItem, Pokemon
 
@@ -54,3 +54,45 @@ def pokemon_detail(name):
     pokemon = Pokemon.from_api(response)
 
     return render_template('pokemon_detail.html', pokemon=pokemon)
+
+
+@bp.route('/search')
+def search():
+    """Search pokemon by name or number."""
+    query = request.args.get('q', '').strip()
+    service = get_pokeapi_service()
+
+    results = []
+
+    if not query:
+        # Empty query - return no results
+        return render_template('components/search_results.html', results=results)
+
+    # Check if query is a number (search by ID)
+    if query.isdigit():
+        pokemon_id = int(query)
+        # Only search for Gen 1 pokemon (1-151)
+        if 1 <= pokemon_id <= 151:
+            response = service.get_pokemon_detail(pokemon_id)
+            if response:
+                pokemon = PokemonListItem(
+                    id=response['id'],
+                    name=response['name'],
+                    display_name=response['name'].capitalize()
+                )
+                results.append(pokemon)
+    else:
+        # Search by name - filter Gen 1 list
+        response = service.get_pokemon_list(limit=151)
+        if response and 'results' in response:
+            # Filter pokemon that contain the query string
+            query_lower = query.lower()
+            filtered = [
+                PokemonListItem.from_api(p)
+                for p in response['results']
+                if query_lower in p['name'].lower()
+            ]
+            # Limit to 10 results
+            results = filtered[:10]
+
+    return render_template('components/search_results.html', results=results)

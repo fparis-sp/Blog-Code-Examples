@@ -1,0 +1,13 @@
+{% if results %}
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {% for pokemon in results %}
+            <a href="/pokemon/{{ pokemon.name }}" class="block">
+                {% include 'components/pokemon_card.html' %}
+            </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="text-center py-8">
+        <p class="text-gray-500 text-lg">No results found</p>
+    </div>
+{% endif %}

@@ -73,3 +73,45 @@ def test_pokemon_detail_not_found(client, mocker):
 
     response = client.get('/pokemon/notapokemon')
     assert response.status_code == 404
+
+
+def test_search_route(client, mocker):
+    """Test search by name with mocked service."""
+    mock_service = mocker.patch('app.routes.main.get_pokeapi_service')
+    mock_service.return_value.get_pokemon_list.return_value = {
+        'results': [
+            {'name': 'bulbasaur', 'url': 'https://pokeapi.co/api/v2/pokemon/1/'},
+            {'name': 'ivysaur', 'url': 'https://pokeapi.co/api/v2/pokemon/2/'},
+            {'name': 'venusaur', 'url': 'https://pokeapi.co/api/v2/pokemon/3/'}
+        ]
+    }
+
+    response = client.get('/search?q=saur')
+    assert response.status_code == 200
+    assert b'bulbasaur' in response.data or b'Bulbasaur' in response.data
+
+
+def test_search_by_number(client, mocker):
+    """Test search by ID with mocked service."""
+    mock_service = mocker.patch('app.routes.main.get_pokeapi_service')
+    mock_service.return_value.get_pokemon_detail.return_value = {
+        'id': 25,
+        'name': 'pikachu',
+        'height': 4,
+        'weight': 60,
+        'types': [{'type': {'name': 'electric'}}],
+        'stats': [],
+        'abilities': [],
+        'sprites': {'front_default': 'https://example.com/25.png'}
+    }
+
+    response = client.get('/search?q=25')
+    assert response.status_code == 200
+    assert b'pikachu' in response.data or b'Pikachu' in response.data
+
+
+def test_search_empty_query(client):
+    """Test empty search query."""
+    response = client.get('/search?q=')
+    assert response.status_code == 200
+    assert b'No results' in response.data or b'no results' in response.data
