@@ -1,0 +1,57 @@
+/* Custom animations and utilities */
+
+.pokemon-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.pokemon-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-bar {
+    transition: width 0.3s ease-in-out;
+}
+
+/* HTMX loading states */
+.htmx-request .htmx-indicator {
+    display: inline-block;
+}
+
+.htmx-indicator {
+    display: none;
+}
+
+/* Type badge animations */
+.type-badge {
+    transition: transform 0.2s ease;
+}
+
+.type-badge:hover {
+    transform: scale(1.05);
+}
+
+/* Search result highlighting */
+.search-result-item {
+    transition: background-color 0.2s ease;
+}
+
+.search-result-item:hover {
+    background-color: rgba(254, 243, 199, 0.5);
+}
+
+/* Loading spinner */
+.spinner {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #ef4444;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
