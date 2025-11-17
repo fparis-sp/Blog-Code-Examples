@@ -1,3 +1,8 @@
+---
+name: code-reviewer
+description: Review automático de código Python con checklist profesional. Detecta bugs, code smells, problemas de seguridad y performance. Usa antes de commits, después de refactorizar o al terminar features.
+---
+
 # Code Reviewer Skill
 
 Review código Python con checklist profesional y feedback constructivo.

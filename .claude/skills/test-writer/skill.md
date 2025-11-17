@@ -1,3 +1,8 @@
+---
+name: test-writer
+description: Genera tests unitarios completos para código Python usando pytest. Cubre happy path, edge cases y error cases. Incluye mocks para dependencias externas. Usa cuando escribes nuevas funciones o refactorizas código.
+---
+
 # Test Writer Skill
 
 Genera tests unitarios completos para código Python.

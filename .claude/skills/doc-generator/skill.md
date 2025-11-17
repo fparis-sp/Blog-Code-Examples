@@ -1,3 +1,8 @@
+---
+name: doc-generator
+description: Genera documentación completa para código Python. Crea docstrings en estilo Google, NumPy o Sphinx. Genera READMEs para módulos. Usa cuando funciones carecen de documentación o necesitas actualizar docs obsoletas.
+---
+
 # Doc Generator Skill
 
 Genera documentación clara y completa para código Python.
