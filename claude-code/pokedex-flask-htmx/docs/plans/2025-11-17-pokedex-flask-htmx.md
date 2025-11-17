@@ -95,7 +95,7 @@ flake8==6.1.0
 **Step 4: Create .python-version**
 
 ```
-3.11
+3.12
 ```
 
 **Step 5: Create pytest.ini**
@@ -1683,7 +1683,7 @@ git commit -m "feat: add custom 404 and 500 error pages"
 **Step 1: Create Dockerfile**
 
 ```dockerfile
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # Set working directory
 WORKDIR /app
@@ -1819,7 +1819,7 @@ A modern web-based Pokédex application built with Flask, HTMX, and Tailwind CSS
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.12+
 - pip
 
 ### Local Development

@@ -24,7 +24,7 @@ A modern web-based Pokédex application built with Flask, HTMX, and Tailwind CSS
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.12+
 - pip
 
 ### Local Development

@@ -168,7 +168,7 @@
 #### Task 10: Docker Configuration
 **Duración:** ~6 minutos
 **Resultado:** ✅ COMPLETADA
-- Creados: Dockerfile (Python 3.11-slim), docker-compose.yml, .dockerignore
+- Creados: Dockerfile (Python 3.12-slim), docker-compose.yml, .dockerignore
 - Tests: `docker-compose build` ✅, `docker-compose up` ✅
 - Verificación: curl http://localhost:5000 → HTTP 200
 - Commit: `e831eec` "feat: add Docker configuration for deployment"
