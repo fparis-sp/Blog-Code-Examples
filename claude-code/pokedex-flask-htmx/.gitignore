@@ -47,3 +47,5 @@ instance/
 # OS
 .DS_Store
 Thumbs.db
+docs/BLOG_POST_DRAFT.md
+docs/SCREENSHOTS_GUIDE.md
