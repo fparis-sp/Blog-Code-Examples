@@ -50,3 +50,7 @@ Thumbs.db
 docs/BLOG_POST_DRAFT.md
 docs/SCREENSHOTS_GUIDE.md
 BUILD_LOG.md
+
+# Internal documentation (not for public repo)
+PROJECT_IDEA.md
+QA_REPORT.md
