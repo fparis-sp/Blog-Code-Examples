@@ -1,0 +1,20 @@
+<!-- Pokemon detail route will be added in Task 7 -->
+<div class="pokemon-card block bg-white rounded-lg shadow-md p-4 hover:shadow-xl">
+    <div class="text-center">
+        <!-- Pokemon Image -->
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png"
+             alt="{{ pokemon.display_name }}"
+             class="mx-auto w-24 h-24 object-contain"
+             loading="lazy">
+
+        <!-- Pokemon Number -->
+        <p class="text-gray-500 text-sm font-mono">
+            #{{ '%03d'|format(pokemon.id) }}
+        </p>
+
+        <!-- Pokemon Name -->
+        <h3 class="text-lg font-bold text-gray-800 capitalize">
+            {{ pokemon.display_name }}
+        </h3>
+    </div>
+</div>

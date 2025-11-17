@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}All Pokémon - Pokédex{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-4xl font-bold text-gray-800 mb-2">All Pokémon</h1>
+    <p class="text-gray-600">Generation 1 - {{ pokemon_list|length }} Pokémon</p>
+</div>
+
+<!-- Pokemon Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+    {% for pokemon in pokemon_list %}
+        {% include 'components/pokemon_card.html' %}
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Pokédex - Gotta Catch 'Em All!{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="text-center mb-12">
+    <h1 class="text-5xl font-bold text-gray-800 mb-4">
+        Welcome to the Pokédex!
+    </h1>
+    <p class="text-xl text-gray-600">
+        Explore the first generation of Pokémon
+    </p>
+</div>
+
+<!-- Featured Pokemon -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Featured Pokémon</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {% for pokemon in featured %}
+            {% include 'components/pokemon_card.html' %}
+        {% endfor %}
+    </div>
+</section>
+
+<!-- CTA Section -->
+<div class="text-center bg-red-600 text-white rounded-lg p-8">
+    <h2 class="text-3xl font-bold mb-4">Ready to Explore?</h2>
+    <p class="text-lg mb-6">Browse all 151 Generation 1 Pokémon</p>
+    <a href="{{ url_for('main.pokemon_list') }}"
+       class="inline-block bg-yellow-400 text-gray-800 font-bold px-8 py-3 rounded-lg hover:bg-yellow-300 transition">
+        View All Pokémon
+    </a>
+</div>
+{% endblock %}
