@@ -1,5 +1,5 @@
-<!-- Pokemon detail route will be added in Task 7 -->
-<div class="pokemon-card block bg-white rounded-lg shadow-md p-4 hover:shadow-xl">
+<a href="{{ url_for('main.pokemon_detail', name=pokemon.name) }}"
+   class="pokemon-card block bg-white rounded-lg shadow-md p-4 hover:shadow-xl transition-shadow">
     <div class="text-center">
         <!-- Pokemon Image -->
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png"
@@ -17,4 +17,4 @@
             {{ pokemon.display_name }}
         </h3>
     </div>
-</div>
+</a>
